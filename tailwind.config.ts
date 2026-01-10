@@ -57,6 +57,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        severity: {
+          disaster: "hsl(var(--severity-disaster))",
+          high: "hsl(var(--severity-high))",
+          warning: "hsl(var(--severity-warning))",
+          info: "hsl(var(--severity-info))",
+          ok: "hsl(var(--severity-ok))",
+        },
+        status: {
+          online: "hsl(var(--status-online))",
+          offline: "hsl(var(--status-offline))",
+          warning: "hsl(var(--status-warning))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
