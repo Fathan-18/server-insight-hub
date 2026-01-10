@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Settings, Server, Database } from 'lucide-react';
+import { Server, Sun, Moon, RefreshCw, LayoutGrid } from 'lucide-react';
+import { useTheme } from '@/hooks/useTheme';
 
 export function Header() {
   const [time, setTime] = useState(new Date());
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -10,61 +12,75 @@ export function Header() {
   }, []);
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-US', {
+    return date.toLocaleTimeString('id-ID', {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-    });
+    }).replace(/:/g, '.');
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString('id-ID', {
       weekday: 'long',
-      month: 'short',
       day: 'numeric',
+      month: 'long',
+      year: 'numeric',
     });
   };
 
   return (
-    <header className="glass-card p-4 mb-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Server className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-semibold">Server Monitor</h1>
+    <header className="flex items-center justify-between py-4 mb-6">
+      <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Server className="w-5 h-5 text-primary" />
           </div>
-          <span className="text-muted-foreground">|</span>
-          <span className="text-sm font-medium text-muted-foreground">Dashboard</span>
+          <div>
+            <h1 className="text-xl font-semibold tracking-tight">Server Monitor</h1>
+            <p className="text-xs text-muted-foreground">Real-time Infrastructure Monitoring</p>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="status-dot status-online" />
-              <span className="text-muted-foreground">ZB:</span>
-              <span className="text-status-online font-medium">ONLINE</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="status-dot status-online" />
-              <span className="text-muted-foreground">ES:</span>
-              <span className="text-status-online font-medium">ONLINE</span>
-            </div>
+        <div className="flex items-center gap-4 ml-6">
+          <div className="flex items-center gap-2 text-sm">
+            <span className="status-dot status-online" />
+            <span className="text-muted-foreground">Elasticsearch</span>
           </div>
-
-          <div className="text-right">
-            <div className="font-mono text-2xl font-semibold tracking-wider">
-              {formatTime(time)}
-            </div>
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">
-              {formatDate(time)} (UTC)
-            </div>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="status-dot status-online" />
+            <span className="text-muted-foreground">Zabbix API</span>
           </div>
+        </div>
+      </div>
 
-          <button className="p-2 hover:bg-accent rounded-lg transition-colors">
-            <Settings className="w-5 h-5 text-muted-foreground" />
+      <div className="flex items-center gap-4">
+        <select className="bg-card border border-border rounded-lg px-3 py-2 text-sm">
+          <option>30s</option>
+          <option>1m</option>
+          <option>5m</option>
+        </select>
+
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1">
+          <button className="p-2 hover:bg-accent rounded-md transition-colors">
+            <LayoutGrid className="w-4 h-4 text-muted-foreground" />
+          </button>
+          <button className="p-2 hover:bg-accent rounded-md transition-colors">
+            <RefreshCw className="w-4 h-4 text-muted-foreground" />
           </button>
         </div>
+
+        <button
+          onClick={toggleTheme}
+          className="p-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-5 h-5 text-yellow-500" />
+          ) : (
+            <Moon className="w-5 h-5 text-slate-600" />
+          )}
+        </button>
       </div>
     </header>
   );

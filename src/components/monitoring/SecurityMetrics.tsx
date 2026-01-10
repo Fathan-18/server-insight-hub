@@ -1,4 +1,4 @@
-import { Shield, Zap, KeyRound } from 'lucide-react';
+import { Shield, Zap, KeyRound, Activity } from 'lucide-react';
 import { SecurityMetrics as SecurityMetricsType } from '@/types/monitoring';
 
 interface SecurityMetricsProps {
@@ -6,36 +6,32 @@ interface SecurityMetricsProps {
 }
 
 export function SecurityMetrics({ metrics }: SecurityMetricsProps) {
+  const totalEvents = metrics.bruteForce + metrics.ddosDetect + metrics.authFails;
+
   return (
-    <div className="grid grid-cols-3 gap-4 mb-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
       <div className="metric-card">
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground uppercase tracking-wide">Brute Force</span>
-          <Shield className="w-4 h-4 text-muted-foreground" />
-        </div>
-        <p className={`text-3xl font-bold ${metrics.bruteForce > 100 ? 'text-status-warning' : 'text-foreground'}`}>
-          {metrics.bruteForce}
-        </p>
+        <Shield className="w-5 h-5 text-red-500 mx-auto mb-2" />
+        <p className="text-3xl font-bold text-red-500">{metrics.bruteForce}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">Brute Force</p>
       </div>
 
       <div className="metric-card">
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground uppercase tracking-wide">DDoS Detect</span>
-          <Zap className="w-4 h-4 text-muted-foreground" />
-        </div>
-        <p className={`text-3xl font-bold ${metrics.ddosDetect > 0 ? 'text-status-offline' : 'text-status-online'}`}>
-          {metrics.ddosDetect}
-        </p>
+        <Zap className="w-5 h-5 text-purple-500 mx-auto mb-2" />
+        <p className="text-3xl font-bold text-purple-500">{metrics.ddosDetect}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">DDoS Attacks</p>
       </div>
 
       <div className="metric-card">
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground uppercase tracking-wide">Auth Fails</span>
-          <KeyRound className="w-4 h-4 text-muted-foreground" />
-        </div>
-        <p className={`text-3xl font-bold ${metrics.authFails > 10 ? 'text-status-warning' : 'text-foreground'}`}>
-          {metrics.authFails}
-        </p>
+        <KeyRound className="w-5 h-5 text-orange-500 mx-auto mb-2" />
+        <p className="text-3xl font-bold text-orange-500">{metrics.authFails}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">Auth Failures</p>
+      </div>
+
+      <div className="metric-card">
+        <Activity className="w-5 h-5 text-primary mx-auto mb-2" />
+        <p className="text-3xl font-bold text-primary">{totalEvents}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">Total Events</p>
       </div>
     </div>
   );
