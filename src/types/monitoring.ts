@@ -1,4 +1,5 @@
 export type SeverityLevel = 'disaster' | 'high' | 'warning' | 'info' | 'ok';
+export type LogType = 'BRUTE FORCE' | 'DDoS' | 'AUTH FAIL' | 'INFO';
 
 export interface ZabbixProblem {
   id: string;
@@ -15,15 +16,20 @@ export interface ElasticLog {
   level: 'INFO' | 'WARN' | 'CRIT' | 'ERROR';
   message: string;
   source?: string;
+  type?: LogType;
 }
 
 export interface HostStatus {
   id: string;
   hostname: string;
+  ip?: string;
   status: 'online' | 'offline' | 'warning';
   cpu: number;
   ram: number;
-  uptime: string;
+  bwIn?: string;
+  bwOut?: string;
+  uptime?: string;
+  lastCheck?: string;
 }
 
 export interface SecurityMetrics {
