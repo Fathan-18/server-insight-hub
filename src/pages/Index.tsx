@@ -1,6 +1,6 @@
 import { Header } from '@/components/monitoring/Header';
 import { StatsCards } from '@/components/monitoring/StatsCards';
-import { SecurityMetrics } from '@/components/monitoring/SecurityMetrics';
+
 import { ZabbixProblems } from '@/components/monitoring/ZabbixProblems';
 import { ElasticLogs } from '@/components/monitoring/ElasticLogs';
 import { SecurityChart } from '@/components/monitoring/SecurityChart';
