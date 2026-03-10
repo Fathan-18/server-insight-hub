@@ -7,7 +7,7 @@ import { ElasticLogs } from '@/components/monitoring/ElasticLogs';
 import { HostsTable } from '@/components/monitoring/HostsTable';
 import {
   mockStats,
-  mockSecurityMetrics,
+  
   mockProblems,
   mockLogs,
   mockHosts,
