@@ -22,17 +22,12 @@ const Index = () => {
 
         <StatsCards stats={mockStats} />
 
-        <SecurityMetrics metrics={mockSecurityMetrics} />
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <div className="h-[400px]">
             <ZabbixProblems problems={mockProblems} />
           </div>
           <div className="h-[400px]">
             <ElasticLogs logs={mockLogs} />
-          </div>
-          <div className="h-[400px]">
-            <SecurityChart data={mockSecurityEvents} />
           </div>
         </div>
 
