@@ -1,17 +1,17 @@
 import { Header } from '@/components/monitoring/Header';
 import { StatsCards } from '@/components/monitoring/StatsCards';
-import { SecurityMetrics } from '@/components/monitoring/SecurityMetrics';
+
 import { ZabbixProblems } from '@/components/monitoring/ZabbixProblems';
 import { ElasticLogs } from '@/components/monitoring/ElasticLogs';
-import { SecurityChart } from '@/components/monitoring/SecurityChart';
+
 import { HostsTable } from '@/components/monitoring/HostsTable';
 import {
   mockStats,
-  mockSecurityMetrics,
+  
   mockProblems,
   mockLogs,
   mockHosts,
-  mockSecurityEvents,
+  
 } from '@/data/mockData';
 
 const Index = () => {
@@ -22,17 +22,12 @@ const Index = () => {
 
         <StatsCards stats={mockStats} />
 
-        <SecurityMetrics metrics={mockSecurityMetrics} />
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <div className="h-[400px]">
             <ZabbixProblems problems={mockProblems} />
           </div>
           <div className="h-[400px]">
             <ElasticLogs logs={mockLogs} />
-          </div>
-          <div className="h-[400px]">
-            <SecurityChart data={mockSecurityEvents} />
           </div>
         </div>
 
