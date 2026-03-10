@@ -3,7 +3,7 @@ import { StatsCards } from '@/components/monitoring/StatsCards';
 
 import { ZabbixProblems } from '@/components/monitoring/ZabbixProblems';
 import { ElasticLogs } from '@/components/monitoring/ElasticLogs';
-import { SecurityChart } from '@/components/monitoring/SecurityChart';
+
 import { HostsTable } from '@/components/monitoring/HostsTable';
 import {
   mockStats,
