@@ -11,7 +11,7 @@ import {
   mockProblems,
   mockLogs,
   mockHosts,
-  mockSecurityEvents,
+  
 } from '@/data/mockData';
 
 const Index = () => {
